@@ -2052,5 +2052,18 @@
         });
     </script>
 
+    <!-- fbclid propagation — transmet le fbclid Meta à tous les liens sunnfit.com -->
+    <script>
+    (function () {
+        const fbclid = new URLSearchParams(window.location.search).get("fbclid");
+        if (!fbclid) return;
+        document.querySelectorAll('a[href*="sunnfit.com"]').forEach(function (link) {
+            const url = new URL(link.href);
+            url.searchParams.set("fbclid", fbclid);
+            link.href = url.toString();
+        });
+    })();
+    </script>
+
 </body>
 </html>
